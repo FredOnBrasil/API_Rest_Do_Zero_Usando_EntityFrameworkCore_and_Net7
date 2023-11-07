@@ -21,7 +21,7 @@ namespace DevEventAPI.Controllers
         /// Consulta todos os eventos:  [Rota = Get api/eventos]
         /// </summary>
         /// <returns>ok</returns>
-        /// /// <response code="200">Sucesso</response>
+        /// <response code="200">Sucesso</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetAll()
@@ -35,9 +35,11 @@ namespace DevEventAPI.Controllers
         /// </summary>
         /// <param name="id">Id do evento</param>
         /// <returns>ok</returns>
-        /// /// <response code="200">Sucesso</response>
+        /// <response code="200">Sucesso</response>
+        /// <response code="404">Não Encontrado</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetById(int id)
         {
             var evento = _contexto.Eventos.SingleOrDefault(ev => ev.Id == id);
@@ -81,12 +83,25 @@ namespace DevEventAPI.Controllers
         /// <summary>
         /// Atualização de Eventos: [Rota = Put api/eventos/1]
         /// </summary>
+        /// <remarks>
+        /// {
+        ///     "id": 0,
+        ///     "titulo": "string",
+        ///     "descricao": "string",
+        ///     "dataInicio": "2023-11-07T19:00:04.105Z",
+        ///     "dataFim": "2023-11-07T19:00:04.105Z",
+        ///     "organizador": "string",
+        ///     "dataCriacao": "2023-11-07T19:00:04.105Z"
+        /// }
+        /// </remarks>
         /// <param name="id">Id do evento</param>
         /// <param name="evento">Dados do Evento</param>
         /// <returns>No Content</returns>
-        /// /// <response code="204">Sucesso</response>
+        /// <response code="204">Sucesso</response>
+        /// <response code="404">Não Encontrado</response>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Put(int id, Evento evento)
         {
             var eventoExistente = _contexto.Eventos.SingleOrDefault(ev => ev.Id == id);
@@ -110,9 +125,11 @@ namespace DevEventAPI.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>No Content</returns>
-        /// /// <response code="204">Sucesso</response>
+        /// <response code="204">Sucesso</response>
+        /// <response code="404">Não Encontrado</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Delete(int id)
         {
             var evento = _contexto.Eventos.SingleOrDefault(ev => ev.Id == id);
