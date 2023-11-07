@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevEventAPI</name>
+    </assembly>
+    <members>
+        <member name="F:DevEventAPI.Controllers.EventosController._contexto">
+            <summary>
+            conceito de injeção de dependências aplicado na prática:
+            </summary>
+        </member>
+        <member name="M:DevEventAPI.Controllers.EventosController.GetAll">
+            <summary>
+            Consulta todos os eventos:  [Rota = Get api/eventos]
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DevEventAPI.Controllers.EventosController.GetById(System.Int32)">
+            <summary>
+            Consulta evento por id: [Rota = Get api/eventos/1]
+            </summary>
+            <param name="id">Id do evento</param>
+            <returns></returns>
+        </member>
+        <member name="M:DevEventAPI.Controllers.EventosController.Post(DevEventAPI.Entities.Evento)">
+            <summary>
+            Cadastro de eventos: [Rota = Post api/eventos]
+            </summary>
+            <remarks>
+            {
+                "titulo": "string",
+                "descricao": "string",
+                "dataInicio": "2023-11-07T19:00:04.105Z",
+                "dataFim": "2023-11-07T19:00:04.105Z",
+                "organizador": "string",
+                "dataCriacao": "2023-11-07T19:00:04.105Z"
+            }
+            </remarks>
+            <param name="evento">Dados do Evento</param>
+            <returns>Evento recém criado</returns>
+            <response code="201">Sucesso</response>
+        </member>
+        <member name="M:DevEventAPI.Controllers.EventosController.Put(System.Int32,DevEventAPI.Entities.Evento)">
+            <summary>
+            Atualização de Eventos: [Rota = Put api/eventos/1]
+            </summary>
+            <param name="id">Id do evento</param>
+            <param name="evento">Dados do Evento</param>
+            <returns>No Content</returns>
+            /// <response code="204">Sucesso</response>
+        </member>
+        <member name="M:DevEventAPI.Controllers.EventosController.Delete(System.Int32)">
+            <summary>
+            Apaga registro usando id: [Rota = Delete api/eventos/1]
+            </summary>
+            <param name="id"></param>
+            <returns>No Content</returns>
+            /// <response code="204">Sucesso</response>
+        </member>
+        <member name="M:DevEventAPI.Persistence.EventosDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{DevEventAPI.Persistence.EventosDbContext})">
+            <summary>
+            Usando Entity Framework Core colocada herança ': DbContext' acima, e o código abaixo muda
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:DevEventAPI.Persistence.EventosDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Aqui definimos o nosso identificador unico como o Id
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+    </members>
+</doc>

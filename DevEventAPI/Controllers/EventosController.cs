@@ -6,7 +6,7 @@ namespace DevEventAPI.Controllers
 {
     [ApiController]
     [Route("api/eventos")]
-    public class EventosController: ControllerBase
+    public class EventosController : ControllerBase
     {
         /// <summary>
         /// conceito de injeção de dependências aplicado na prática:
@@ -18,20 +18,20 @@ namespace DevEventAPI.Controllers
         }
 
         /// <summary>
-        /// Get api/eventos
+        /// Consulta todos os eventos:  [Rota = Get api/eventos]
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         public IActionResult GetAll()
         {
-            var eventos = _contexto.Eventos; 
+            var eventos = _contexto.Eventos;
             return Ok(eventos);
         }
 
         /// <summary>
-        /// Get api/eventos/1
+        /// Consulta evento por id: [Rota = Get api/eventos/1]
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id do evento</param>
         /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
@@ -46,11 +46,23 @@ namespace DevEventAPI.Controllers
         }
 
         /// <summary>
-        /// Post api/eventos
+        /// Cadastro de eventos: [Rota = Post api/eventos]
         /// </summary>
-        /// <param name="evento"></param>
-        /// <returns></returns>
+        /// <remarks>
+        /// {
+        ///     "titulo": "string",
+        ///     "descricao": "string",
+        ///     "dataInicio": "2023-11-07T19:00:04.105Z",
+        ///     "dataFim": "2023-11-07T19:00:04.105Z",
+        ///     "organizador": "string",
+        ///     "dataCriacao": "2023-11-07T19:00:04.105Z"
+        /// }
+        /// </remarks>
+        /// <param name="evento">Dados do Evento</param>
+        /// <returns>Evento recém criado</returns>
+        /// <response code="201">Sucesso</response>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult Post(Evento evento)
         {
             _contexto.Eventos.Add(evento);
@@ -58,17 +70,19 @@ namespace DevEventAPI.Controllers
 
             return CreatedAtAction(
                 nameof(GetById),
-                new {id = evento.Id},
+                new { id = evento.Id },
                 evento);
         }
 
         /// <summary>
-        /// Put api/eventos/1
+        /// Atualização de Eventos: [Rota = Put api/eventos/1]
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="evento"></param>
-        /// <returns></returns>
+        /// <param name="id">Id do evento</param>
+        /// <param name="evento">Dados do Evento</param>
+        /// <returns>No Content</returns>
+        /// /// <response code="204">Sucesso</response>
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public IActionResult Put(int id, Evento evento)
         {
             var eventoExistente = _contexto.Eventos.SingleOrDefault(ev => ev.Id == id);
@@ -88,11 +102,13 @@ namespace DevEventAPI.Controllers
         }
 
         /// <summary>
-        /// Delete api/eventos/1
+        /// Apaga registro usando id: [Rota = Delete api/eventos/1]
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>No Content</returns>
+        /// /// <response code="204">Sucesso</response>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public IActionResult Delete(int id)
         {
             var evento = _contexto.Eventos.SingleOrDefault(ev => ev.Id == id);
