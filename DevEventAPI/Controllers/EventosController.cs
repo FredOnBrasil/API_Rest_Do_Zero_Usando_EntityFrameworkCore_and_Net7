@@ -20,8 +20,10 @@ namespace DevEventAPI.Controllers
         /// <summary>
         /// Consulta todos os eventos:  [Rota = Get api/eventos]
         /// </summary>
-        /// <returns></returns>
+        /// <returns>ok</returns>
+        /// /// <response code="200">Sucesso</response>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetAll()
         {
             var eventos = _contexto.Eventos;
@@ -32,8 +34,10 @@ namespace DevEventAPI.Controllers
         /// Consulta evento por id: [Rota = Get api/eventos/1]
         /// </summary>
         /// <param name="id">Id do evento</param>
-        /// <returns></returns>
+        /// <returns>ok</returns>
+        /// /// <response code="200">Sucesso</response>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetById(int id)
         {
             var evento = _contexto.Eventos.SingleOrDefault(ev => ev.Id == id);

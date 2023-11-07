@@ -13,14 +13,16 @@
             <summary>
             Consulta todos os eventos:  [Rota = Get api/eventos]
             </summary>
-            <returns></returns>
+            <returns>ok</returns>
+            /// <response code="200">Sucesso</response>
         </member>
         <member name="M:DevEventAPI.Controllers.EventosController.GetById(System.Int32)">
             <summary>
             Consulta evento por id: [Rota = Get api/eventos/1]
             </summary>
             <param name="id">Id do evento</param>
-            <returns></returns>
+            <returns>ok</returns>
+            /// <response code="200">Sucesso</response>
         </member>
         <member name="M:DevEventAPI.Controllers.EventosController.Post(DevEventAPI.Entities.Evento)">
             <summary>
